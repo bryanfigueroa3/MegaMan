@@ -154,6 +154,10 @@ public class GameLogic {
 			if(gameScreen.getBoom() == 2)
 				gameWon();
 		}
+		if(!status.isGameWon()){
+			if(gameScreen.getBoom() == 8)
+				gameWon();
+		}
 	}
 
 	/**

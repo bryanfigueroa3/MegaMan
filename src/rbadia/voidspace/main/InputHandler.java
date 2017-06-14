@@ -30,6 +30,7 @@ public class InputHandler implements KeyListener{
 	private boolean eIsPressed;
 	private boolean qIsPressed;
 	private boolean mIsPressed;
+	private boolean nIsPressed;
 
 	private long lastBulletTime;
 	private long lastExchangeTime;
@@ -99,13 +100,31 @@ public class InputHandler implements KeyListener{
 
 				}
 			}
+			
+			if(nIsPressed){
+				if(!status.isGameOver() && !status.isNewMegaMan() && !status.isGameStarting() && !status.isGameWon()){
+					status.setLevel(status.getLevel()+1);
+					switch(status.getLevel()){
+					case 1:
+						//do nothing, there will never be a case 1
+					case 2:
+						gameScreen.setBoom(2);
+						gameScreen.restructure();
+						break;
+					case 3:
+						gameScreen.setBoom(8);
+						gameScreen.restructure();
+						break;
+					}
+				}
+			}
 
 			//WIP
 			//			if(mIsPressed){
 			//				mute=1;
 			//			}
 
-			MegaMan megaMan = gameLogic.getMegaMan();
+			MegaMan megaMan = gameLogic.getMegaMan(); 
 			Floor[] floor = gameLogic.getFloor();
 
 			if(shiftIsPressed){
@@ -308,6 +327,9 @@ public class InputHandler implements KeyListener{
 		case KeyEvent.VK_M:
 			this.mIsPressed= true;
 			break;
+		case KeyEvent.VK_N:
+			this.nIsPressed = true;
+			break;
 		}
 
 
@@ -345,9 +367,11 @@ public class InputHandler implements KeyListener{
 		case KeyEvent.VK_Q:
 			this.qIsPressed = false;
 			break;
-
 		case KeyEvent.VK_M:
 			this.mIsPressed = false;
+			break;
+		case KeyEvent.VK_N:
+			this.nIsPressed = false;
 			break;
 		}
 		e.consume();
