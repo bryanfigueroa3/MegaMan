@@ -110,7 +110,7 @@ public class MainFrame extends JFrame {
 			gridBagConstraints.gridy = 0;
 			gridBagConstraints.fill = GridBagConstraints.NONE;
 			gridBagConstraints.gridwidth = 6;	
-			shipsLabel = new JLabel("Ships Left: ");
+			shipsLabel = new JLabel("Lives Left: ");
 			shipsValueLabel = new JLabel("3");
 			destroyedLabel = new JLabel("Score: ");
 			destroyedValueLabel = new JLabel("0");

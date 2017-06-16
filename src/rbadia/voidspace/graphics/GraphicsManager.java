@@ -4,15 +4,20 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 
+import rbadia.voidspace.main.GameLogic;
+import rbadia.voidspace.main.GameStatus;
 import rbadia.voidspace.model.Asteroid;
 //import rbadia.voidspace.model.BigAsteroid;
 import rbadia.voidspace.model.BigBullet;
+import rbadia.voidspace.model.Boss;
 //import rbadia.voidspace.model.Boss;
 import rbadia.voidspace.model.Bullet;
+import rbadia.voidspace.model.BulletBoss;
 import rbadia.voidspace.model.Floor;
 //import rbadia.voidspace.model.BulletBoss;
 //import rbadia.voidspace.model.BulletBoss2;
@@ -33,11 +38,16 @@ public class GraphicsManager {
 	private BufferedImage asteroidImg;
 	private BufferedImage asteroidExplosionImg;
 	private BufferedImage megaManExplosionImg;
+	private BufferedImage enemyShipImg;
+	private BufferedImage bulletBossImg;
+	private BufferedImage backgroundImg;
+	private BufferedImage bossImg;
 	//	private BufferedImage bossImg;
 	//	private BufferedImage bossImg2;
 	//	private BufferedImage bigAsteroidImg;
 	private BufferedImage bigAsteroidExplosionImg;
-
+	private GameStatus status;
+	private GameLogic gameLogic;
 	/**
 	 * Creates a new graphics manager and loads the game images.
 	 */
@@ -56,6 +66,10 @@ public class GraphicsManager {
 			//this.megaManExplosionImg = ImageIO.read(getClass().getResource("/rbadia/voidspace/graphics/megaManExplosion.png"));
 			this.bulletImg = ImageIO.read(getClass().getResource("/rbadia/voidspace/graphics/bullet.png"));
 			this.bigBulletImg = ImageIO.read(getClass().getResource("/rbadia/voidspace/graphics/bigBullet.png"));
+			this.enemyShipImg = ImageIO.read(getClass().getResourceAsStream("/rbadia/voidspace/graphics/ship.png"));
+			this.bulletBossImg = ImageIO.read(getClass().getResource("/rbadia/voidspace/graphics/bullet.png"));
+			this.bossImg = ImageIO.read(getClass().getResource("/rbadia/voidspace/graphics/fireman.png"));
+			this.backgroundImg = ImageIO.read(getClass().getResource("/rbadia/voidspace/graphics/newBackground.png"));
 			//			this.bigAsteroidImg = ImageIO.read(getClass().getResource("/rbadia/voidspace/graphics/BigAsteroid.png"));
 			//			this.bigAsteroidExplosionImg = ImageIO.read(getClass().getResource("/rbadia/voidspace/graphics/bigAsteroidExplosion.png"));
 
@@ -96,6 +110,9 @@ public class GraphicsManager {
 	public void drawPlatform2 (Platform platform, Graphics2D g2d, ImageObserver observer, int i){
 		g2d.drawImage(platformImg, platform.x , platform.y, observer);	
 }
+	public void drawBoss (Boss boss, Graphics2D g2d, ImageObserver observer){
+		g2d.drawImage(bossImg, boss.x , boss.y, observer);	
+	}
 
 	/**
 	 * Draws a bullet image to the specified graphics canvas.
@@ -106,7 +123,9 @@ public class GraphicsManager {
 	public void drawBullet(Bullet bullet, Graphics2D g2d, ImageObserver observer) {
 		g2d.drawImage(bulletImg, bullet.x, bullet.y, observer);
 	}
-
+	public void drawBulletBoss(BulletBoss bulletB, Graphics2D g2d, ImageObserver observer) {
+		g2d.drawImage(bulletImg, bulletB.x, bulletB.y, observer);
+	}
 	/**
 	 * Draws a bullet image to the specified graphics canvas.
 	 * @param bigBullet the bullet to draw
@@ -119,13 +138,13 @@ public class GraphicsManager {
 
 	/**
 	 * Draws an asteroid image to the specified graphics canvas.
-	 * @param asteroid the asteroid to draw
+	 * @param asteroids the asteroid to draw
 	 * @param g2d the graphics canvas
 	 * @param observer object to be notified
 	 */
 	public void drawAsteroid(Asteroid asteroid, Graphics2D g2d, ImageObserver observer) {
 		g2d.drawImage(asteroidImg, asteroid.x, asteroid.y, observer);
-	}
+	} 
 
 	/**
 	 * Draws a ship explosion image to the specified graphics canvas.
@@ -143,12 +162,18 @@ public class GraphicsManager {
 	 * @param g2d the graphics canvas
 	 * @param observer object to be notified
 	 */
+	public void drawenemyShip(Rectangle enemyShip, Graphics2D g2d, ImageObserver observer ){
+		g2d.drawImage(enemyShipImg, enemyShip.x,enemyShip.y, observer);
+	}
 	public void drawAsteroidExplosion(Rectangle asteroidExplosion, Graphics2D g2d, ImageObserver observer) {
 		g2d.drawImage(asteroidExplosionImg, asteroidExplosion.x, asteroidExplosion.y, observer);
 	}
 
 	public void drawBigAsteroidExplosion(Rectangle bigAsteroidExplosion, Graphics2D g2d, ImageObserver observer) {
 		g2d.drawImage(bigAsteroidExplosionImg, bigAsteroidExplosion.x, bigAsteroidExplosion.y, observer);
+	}
+	public void drawBackground(Rectangle background, Graphics2D g2d, ImageObserver observer) {
+		g2d.drawImage(bigAsteroidExplosionImg, background.x, background.y, observer);
 	}
 
 

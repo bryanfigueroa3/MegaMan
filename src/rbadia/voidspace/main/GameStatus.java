@@ -13,6 +13,7 @@ public class GameStatus {
 	// status variables
 	private boolean newMegaMan;
 	private boolean newBoss;
+	private boolean newEnemy;
 	private boolean newAsteroid;
 	private boolean newAsteroid2;
 	private boolean newBigAsteroid;
@@ -117,7 +118,12 @@ public class GameStatus {
 	public synchronized void setNewBoss2(boolean newBoss) {
 		this.newBoss = newBoss;
 	}
-	
+	public synchronized boolean isNewEnemy() {
+		return newEnemy;
+	}
+	public synchronized void setNewEnemy(boolean newEnemy) {
+		this.newEnemy = newEnemy;
+	}
 	/**
 	 * Indicates if a new asteroid should be created/drawn.
 	 * @return if a new asteroid should be created/drawn

@@ -1,5 +1,6 @@
 package rbadia.voidspace.main;
 
+
 import java.awt.event.ActionEvent;
 
 
@@ -19,13 +20,14 @@ import javax.swing.Timer;
 import rbadia.voidspace.model.Asteroid;
 import rbadia.voidspace.model.BigAsteroid;
 import rbadia.voidspace.model.BigBullet;
+import rbadia.voidspace.model.Boss;
 import rbadia.voidspace.model.Bullet;
 import rbadia.voidspace.model.BulletBoss;
 import rbadia.voidspace.model.BulletBoss2;
 import rbadia.voidspace.model.Floor;
 import rbadia.voidspace.model.MegaMan;
 import rbadia.voidspace.model.Platform;
-import rbadia.voidspace.model.Boss;
+import rbadia.voidspace.model.EnemyShip;
 import rbadia.voidspace.sounds.SoundManager;
 
 
@@ -39,9 +41,10 @@ public class GameLogic {
 	private SoundManager soundMan;
 
 	private MegaMan megaMan;
-
 	private Boss boss;
-	private Boss boss2;
+
+	private EnemyShip enemy;
+	private EnemyShip boss2;
 	private Asteroid asteroid;
 	private Asteroid asteroid2;
 	private BigAsteroid bigAsteroid;
@@ -49,6 +52,7 @@ public class GameLogic {
 	private List<BulletBoss> bulletsBoss;
 	private List<BulletBoss2> bulletsBoss2;
 	private List<BigBullet> bigBullets;
+	private List<BulletBoss> enemyBullet;
 
 	private Platform[] numPlatforms;
 	private Floor[] floor;
@@ -72,6 +76,8 @@ public class GameLogic {
 		bulletsBoss = new ArrayList<BulletBoss>();
 		bulletsBoss2 = new ArrayList<BulletBoss2>();
 		bigBullets = new ArrayList<BigBullet>();
+		
+	//	asteroid = new ArrayList<Asteroid>();
 	}
 
 	/**
@@ -101,6 +107,7 @@ public class GameLogic {
 		bulletsBoss = new ArrayList<BulletBoss>();
 		bulletsBoss2 = new ArrayList<BulletBoss2>();
 		bigBullets = new ArrayList<BigBullet>();
+	//	asteroid = new ArrayList<Asteroid>();
 		//numPlatforms = new Platform[5];
 
 		status.setShipsLeft(3);
@@ -120,6 +127,7 @@ public class GameLogic {
 
 		//        newPlatform(gameScreen/*, 1*/);
 		//        newPlatform1(gameScreen);
+		newEnemy(gameScreen);
 		newBoss(gameScreen);
 		newBoss2(gameScreen);
 		newAsteroid(gameScreen);
@@ -154,6 +162,11 @@ public class GameLogic {
 			if(gameScreen.getBoom() == 2)
 				gameWon();
 		}
+		if(!status.isGameWon()){
+			if(gameScreen.getBoom() == 8)
+				gameWon();
+		}
+		
 	}
 
 	/**
@@ -246,6 +259,14 @@ public class GameLogic {
 		bigBullets.add(bigBullet);
 		soundMan.playBulletSound();
 	}
+	public void fireEnemyBullet(){
+		int boom = gameScreen.getBoom();
+		if(!status.isNewEnemy()&& boom>2 && boom<8){
+		BulletBoss bullet=new BulletBoss(enemy);
+		bullet.add(bullet);
+		soundMan.playBulletSound();
+		}
+	}
 
 	/**
 	 * Move a bullet once fired from the ship.
@@ -269,7 +290,7 @@ public class GameLogic {
 	 */
 	public boolean moveBulletBoss(BulletBoss bulletBoss){
 		if(bulletBoss.getY() - bulletBoss.getSpeed() >= 0){
-			bulletBoss.translate(0, bulletBoss.getSpeed());
+			bulletBoss.translate(bulletBoss.getSpeed(),0);
 			return false;
 		}
 		else{
@@ -312,6 +333,10 @@ public class GameLogic {
 		this.megaMan = new MegaMan(screen);
 		return megaMan;
 	}
+	public Boss newBoss(GameScreen screen){
+		this.boss = new Boss(screen);
+		return boss;
+	}
 
 	public Floor[] newFloor(GameScreen screen, int n){
 		floor = new Floor[n];
@@ -333,18 +358,18 @@ public class GameLogic {
 
 
 	/**
-	 * Create the first boss.
+	 * Create the first enemy.
 	 */
-	public Boss newBoss(GameScreen screen){
-		this.boss = new Boss(screen);
-		return boss;
+	public EnemyShip newEnemy(GameScreen screen){
+		this.enemy = new EnemyShip(screen);
+		return enemy;
 	}
 
 	/**
 	 * Create the second boss.
 	 */
-	public Boss newBoss2(GameScreen screen){
-		this.boss2 = new Boss(screen);
+	public EnemyShip newBoss2(GameScreen screen){
+		this.boss2 = new EnemyShip(screen);
 		return boss2;
 	}
 
@@ -353,6 +378,7 @@ public class GameLogic {
 	 */
 	public Asteroid newAsteroid(GameScreen screen){
 		this.asteroid = new Asteroid(screen);
+		
 		return asteroid;
 	}
 
@@ -379,7 +405,9 @@ public class GameLogic {
 	public MegaMan getMegaMan() {
 		return megaMan;
 	}
-
+	public Boss getBoss(){
+		return boss;
+	}
 	public Floor[] getFloor(){
 		return floor;	
 	}
@@ -388,11 +416,11 @@ public class GameLogic {
 		return numPlatforms;
 	}
 
-	public Boss getBoss() {
-		return boss;
+	public EnemyShip getEnemy() {
+		return enemy;
 	}
 
-	public Boss getBoss2() {
+	public EnemyShip getBoss2() {
 		return boss2;
 	}
 

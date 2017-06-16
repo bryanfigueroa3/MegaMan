@@ -16,7 +16,7 @@ public class BulletBoss2 extends Rectangle {
 	 * Creates a new bullet above the ship, centered on it
 	 * @param ship
 	 */	
-	public BulletBoss2(Boss boss2){
+	public BulletBoss2(EnemyShip boss2){
 		this.setLocation(boss2.x + boss2.width/2 + 15,
 				boss2.y + boss2.height);
 		this.setSize(bulletBossWidth, bulletBossHeight);

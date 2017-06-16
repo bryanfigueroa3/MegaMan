@@ -36,7 +36,7 @@ public class GameScreen2 extends BaseScreen {
 	}
 
 	@Override
-	protected void drawYouWin() {
+	protected void drawYouPass() {
 		// TODO Auto-generated method stub
 		
 	}
