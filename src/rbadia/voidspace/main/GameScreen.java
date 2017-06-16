@@ -44,8 +44,10 @@ public class GameScreen extends BaseScreen{
 	private long lastAsteroid2Time;
 	//	private long lastBigAsteroidTime;
 	private long lastBulletTime;
+	private long lastEnemyShip;
 
 	private Rectangle asteroidExplosion;
+	private Rectangle enemyExplosion;
 	//	private Rectangle bigAsteroidExplosion;
 	//	private Rectangle shipExplosion;
 	//	private Rectangle bossExplosion;
@@ -127,7 +129,7 @@ public class GameScreen extends BaseScreen{
 		Boss boss = gameLogic.getBoss();
 		//		Asteroid asteroid2 = gameLogic.getAsteroid2();
 		//		BigAsteroid bigAsteroid = gameLogic.getBigAsteroid();
-		List<BulletBoss> bulletsBoss = gameLogic.getBulletBoss();
+		List<BulletBoss> enemyBullet = gameLogic.getEnemyBullet();
 		//		List<BulletBoss2> bulletsBoss2 = gameLogic.getBulletBoss2();
 		EnemyShip enemy = gameLogic.getEnemy();
 		//		Boss boss2 = gameLogic.getBoss2();
@@ -303,6 +305,10 @@ public class GameScreen extends BaseScreen{
 				graphicsMan.drawenemyShip(enemy, g2d, this);
 			}
 			else if (boom <=7){
+				if(!enemy.touchUpperScreen(enemy)){
+					enemy.translate(0,enemy.getSpeed());
+					
+				}
 				enemy.setLocation(this.getWidth()-enemy.getEnemyWidth(),this.getHeight() - enemy.getEnemyHeight()+25);
 			}
 			
@@ -321,7 +327,7 @@ public class GameScreen extends BaseScreen{
 			Bullet bullet = bullets.get(i);
 			graphicsMan.drawBullet(bullet, g2d, this);
 
-			boolean remove =   gameLogic.moveBullet(bullet);
+			boolean remove = gameLogic.moveBullet(bullet);
 			if(remove){
 				bullets.remove(i);
 				i--;
@@ -333,12 +339,13 @@ public class GameScreen extends BaseScreen{
 				lastBulletTime = currentTime;
 				gameLogic.fireEnemyBullet();
 		}
-				for(int i=0;i<bulletsBoss.size();i++){
-					BulletBoss bulletb = bulletsBoss.get(i);					
+				for(int i=0;i<enemyBullet.size();i++){
+					BulletBoss bulletb = enemyBullet.get(i);	
 					graphicsMan.drawBulletBoss(bulletb, g2d, this);
+					
 					boolean remove = gameLogic.moveBulletBoss(bulletb);
 					if(remove){
-						bulletsBoss.remove(i);
+						enemyBullet.remove(i);
 						i--;
 			}
 		}
@@ -367,6 +374,7 @@ public class GameScreen extends BaseScreen{
 				bullets.remove(i);
 				break;
 			}
+			
 //			if(asteroid2.intersects(bullet)){
 //				// increase asteroids destroyed count
 //				status.setAsteroidsDestroyed(status.getAsteroidsDestroyed() + 100);
@@ -377,6 +385,19 @@ public class GameScreen extends BaseScreen{
 //				bullets.remove(i);
 //				break;
 //			}
+		}
+		for(int i=0; i<bullets.size(); i++){
+			Bullet bullet = bullets.get(i);
+			if(enemy.intersects(bullet)){
+				// increase asteroids destroyed count
+				status.setEnemyDestroyed(status.getEnemyDestroyed() + 100);
+				removeEnemy(enemy);
+				boom=boom + 1;
+				damage=0;
+				// remove bullet
+				bullets.remove(i);
+				break;
+			}
 		}
 
 		//Big bullet-asteroid collisions
@@ -814,4 +835,18 @@ public class GameScreen extends BaseScreen{
 		// play asteroid explosion sound
 		soundMan.playAsteroidExplosionSound();
 		}
+	public void removeEnemy (EnemyShip enemy){
+		enemyExplosion = new Rectangle(
+				enemy.x,
+				enemy.y,
+				enemy.width,
+				enemy.height);
+		enemy.setLocation(-enemy.width, -enemy.height);
+		status.setNewEnemy(true);
+		lastEnemyShip = System.currentTimeMillis();
+
+		// play asteroid explosion sound
+		soundMan.playAsteroidExplosionSound();
+		}
+	
 }

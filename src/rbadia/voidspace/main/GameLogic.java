@@ -73,7 +73,7 @@ public class GameLogic {
 
 		// init some variables
 		bullets = new ArrayList<Bullet>();
-		bulletsBoss = new ArrayList<BulletBoss>();
+		enemyBullet = new ArrayList<BulletBoss>();
 		bulletsBoss2 = new ArrayList<BulletBoss2>();
 		bigBullets = new ArrayList<BigBullet>();
 		
@@ -104,7 +104,7 @@ public class GameLogic {
 
 		// init game variables
 		bullets = new ArrayList<Bullet>();
-		bulletsBoss = new ArrayList<BulletBoss>();
+		enemyBullet = new ArrayList<BulletBoss>();
 		bulletsBoss2 = new ArrayList<BulletBoss2>();
 		bigBullets = new ArrayList<BigBullet>();
 	//	asteroid = new ArrayList<Asteroid>();
@@ -263,8 +263,9 @@ public class GameLogic {
 		int boom = gameScreen.getBoom();
 		if(!status.isNewEnemy()&& boom>2 && boom<8){
 		BulletBoss bullet=new BulletBoss(enemy);
-		bullet.add(bullet);
+		enemyBullet.add(bullet);
 		soundMan.playBulletSound();
+		
 		}
 	}
 
@@ -274,7 +275,7 @@ public class GameLogic {
 	 * @return if the bullet should be removed from screen
 	 */
 	public boolean moveBullet(Bullet bullet){
-		if(bullet.getY() - bullet.getSpeed() >= 0){
+		if(bullet.getY()+enemy.width - bullet.getSpeed() >= 0){
 			bullet.translate(bullet.getSpeed(), 0);
 			return false;
 		}
@@ -289,8 +290,8 @@ public class GameLogic {
 	 * @return if the bullet should be removed from screen
 	 */
 	public boolean moveBulletBoss(BulletBoss bulletBoss){
-		if(bulletBoss.getY() - bulletBoss.getSpeed() >= 0){
-			bulletBoss.translate(bulletBoss.getSpeed(),0);
+		if(enemy.getY()+enemy.getEnemyHeight()>0){
+			bulletBoss.translate(-bulletBoss.getSpeed(),0);
 			return false;
 		}
 		else{
@@ -452,8 +453,8 @@ public class GameLogic {
 	 * Returns the list of the boss's bullets.
 	 * @return the list of the boss's bullets
 	 */
-	public List<BulletBoss> getBulletBoss() {
-		return bulletsBoss;
+	public List<BulletBoss> getEnemyBullet() {
+		return enemyBullet;
 	}
 
 	/**

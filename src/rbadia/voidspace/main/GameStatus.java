@@ -19,6 +19,7 @@ public class GameStatus {
 	private boolean newBigAsteroid;
 	private boolean newFloor;
 	private boolean newPlatform;
+	private long enemyDestroyed = 0;
 	private long asteroidsDestroyed = 0;
 	private int shipsLeft;
 	private int level = 1;
@@ -167,7 +168,13 @@ public class GameStatus {
 	public synchronized void setAsteroidsDestroyed(long asteroidsDestroyed) {
 		this.asteroidsDestroyed = asteroidsDestroyed;
 	}
+	public synchronized long getEnemyDestroyed() {
+		return enemyDestroyed;
+	}
 
+	public synchronized void setEnemyDestroyed(long enemyDestroyed) {
+		this.enemyDestroyed = enemyDestroyed;
+	}
 	/**
 	 * Returns the number ships/lives left.
 	 * @return the number ships left
