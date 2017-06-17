@@ -9,11 +9,12 @@ import rbadia.voidspace.main.GameScreen;
 public class Boss extends Rectangle   {
 	private static final long serialVersionUID = 1L;
 	private  Random rand = new Random();
-	public static final int DEFAULT_SPEED = 4;
+	public static final int DEFAULT_SPEED = 2;
 	
-	private int bossWidth = 100;
-	private int bossHeight = 132;
+	private int bossWidth = 95;
+	private int bossHeight = 100;
 	private int speed = DEFAULT_SPEED;
+	private static final int Y_OFFSET = 30;
 	
 
 	
@@ -22,10 +23,8 @@ public class Boss extends Rectangle   {
 	 * @param screen the game screen
 	 */
 	public Boss(GameScreen screen){
-		this.setLocation(
-				screen.getWidth() - bossWidth,
-        		rand.nextInt(screen.getHeight() - bossHeight - 32)
-        		);
+		this.setLocation((screen.getWidth() - bossWidth),
+				(screen.getHeight() - bossHeight - Y_OFFSET) );
 		this.setSize(bossWidth, bossHeight);
 	}
 	
@@ -41,7 +40,7 @@ public class Boss extends Rectangle   {
 	 * @return the current asteroid speed
 	 */
 	public int getSpeed() {
-		int randspeed = rand.nextInt(7);
-		return speed = randspeed;
+	
+		return speed = DEFAULT_SPEED;
 	}
 }

@@ -7,8 +7,8 @@ import java.awt.Rectangle;
 public class BulletBoss2 extends Rectangle {
 	private static final long serialVersionUID = 1L;
 	
-	private int bulletBossWidth = 8;
-	private int bulletBossHeight = 8;
+	private int bulletBossWidth = 20;
+	private int bulletBossHeight = 15;
 	private int speed = 12;
 
 	

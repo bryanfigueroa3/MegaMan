@@ -86,7 +86,7 @@ public class EnemyShip extends Rectangle {
 		return DEFAULT_SPEED3;
 	}
 	public boolean touchUpperScreen(EnemyShip enemy){
-		if(enemy.getY() >= this.getHeight()-20){
+		if(enemy.getY() <= this.getHeight()-20){
 			return true;
 		}
 		else{

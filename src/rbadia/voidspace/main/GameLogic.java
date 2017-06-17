@@ -268,6 +268,15 @@ public class GameLogic {
 		
 		}
 	}
+	public void fireBossBullet(){
+		int boom = gameScreen.getBoom();
+		if(!status.isNewBoss() && boom>8){
+		BulletBoss2 bullet=new BulletBoss2(enemy);
+		bulletsBoss2.add(bullet);
+		
+		
+		}
+	}
 
 	/**
 	 * Move a bullet once fired from the ship.
@@ -275,7 +284,7 @@ public class GameLogic {
 	 * @return if the bullet should be removed from screen
 	 */
 	public boolean moveBullet(Bullet bullet){
-		if(bullet.getY()+bullet.width - bullet.getSpeed() >= 0){
+		if(bullet.getY()+bullet.width - bullet.getSpeed() < gameScreen.getHeight()){
 			bullet.translate(bullet.getSpeed(), 0);
 			return false;
 		}
@@ -290,7 +299,7 @@ public class GameLogic {
 	 * @return if the bullet should be removed from screen
 	 */
 	public boolean moveBulletEnemy(BulletEnemy bulleEnemy){
-		if(bulleEnemy.getY()+bulleEnemy.width+bulleEnemy.getSpeed()>=0){
+		if(bulleEnemy.getY()+bulleEnemy.width-bulleEnemy.getSpeed()<gameScreen.getWidth()){
 			bulleEnemy.translate(-bulleEnemy.getSpeed(),0);
 			return false;
 		}
@@ -304,8 +313,8 @@ public class GameLogic {
 	 * @return if the bullet should be removed from screen
 	 */
 	public boolean moveBulletBoss2(BulletBoss2 bulletBoss2){
-		if(bulletBoss2.getY() - bulletBoss2.getSpeed() >= 0){
-			bulletBoss2.translate(0, bulletBoss2.getSpeed());
+		if(bulletBoss2.getY()+bulletBoss2.width + bulletBoss2.getSpeed()< gameScreen.getHeight()){
+			bulletBoss2.translate(-bulletBoss2.getSpeed(), 0);
 			return false;
 		}
 		else{

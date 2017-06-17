@@ -9,7 +9,7 @@ public class BulletEnemy extends Rectangle {
 	
 	private int bulletEnemyWidth = 8;
 	private int bulletEnemyHeight = 8;
-	private int speed = 8;
+	private int speed = 5;
 
 	
 	/**
