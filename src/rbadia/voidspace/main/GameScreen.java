@@ -127,7 +127,7 @@ public class GameScreen extends BaseScreen{
 		//		List<BulletBoss> bulletsBoss = gameLogic.getBulletBoss();
 		//		List<BulletBoss2> bulletsBoss2 = gameLogic.getBulletBoss2();		
 		//		Boss boss = gameLogic.getBoss();
-		//		Boss boss2 = gameLogic.getBoss2();
+		//		Boss boss2 = gameLogic.getBoss2();//
 
 
 		// set orignal font - for later use
