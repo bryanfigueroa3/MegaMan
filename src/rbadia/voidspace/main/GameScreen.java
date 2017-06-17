@@ -390,19 +390,19 @@ public class GameScreen extends BaseScreen{
 //			}
 		}
 		//Bullet-enemy collision
-		for(int i=0; i<enemyBullet.size(); i++){
-			BulletEnemy bullet = enemyBullet.get(i);
-			if(enemy.intersects(bullet)){
-				// increase enemy destroyed count
-//				status.setEnemyDestroyed(status.getEnemyDestroyed() + 100);
-//				removeEnemy(enemy);
-//				boom=boom + 1;
-//				damage=0;
-				// remove bullet
-			//	bullets.remove(i);
-				break;
-			}
-		}
+//		for(int i=0; i<enemyBullet.size(); i++){
+//			BulletEnemy bullet = enemyBullet.get(i);
+//			if(enemy.intersects(bullet)){
+//				// increase enemy destroyed count
+////				status.setEnemyDestroyed(status.getEnemyDestroyed() + 100);
+////				removeEnemy(enemy);
+////				boom=boom + 1;
+////				damage=0;
+//				// remove bullet
+//			//	bullets.remove(i);
+//				break;
+//			}
+//		}
 
 		//Big bullet-asteroid collisions
 		for(int i=0; i<bigBullets.size(); i++){
