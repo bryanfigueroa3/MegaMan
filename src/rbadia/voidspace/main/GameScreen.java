@@ -818,7 +818,7 @@ public class GameScreen extends BaseScreen{
 		}
 		
 	}
-
+//
 	public void removeAsteroid(Asteroid asteroid){
 		// "remove" asteroid
 		asteroidExplosion = new Rectangle(
@@ -860,5 +860,5 @@ public class GameScreen extends BaseScreen{
 		// play asteroid explosion sound
 		soundMan.playAsteroidExplosionSound();
 		}
-	
+	//
 }
