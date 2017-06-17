@@ -22,7 +22,7 @@ import rbadia.voidspace.model.BigAsteroid;
 import rbadia.voidspace.model.BigBullet;
 import rbadia.voidspace.model.Boss;
 import rbadia.voidspace.model.Bullet;
-import rbadia.voidspace.model.BulletBoss;
+import rbadia.voidspace.model.BulletEnemy;
 import rbadia.voidspace.model.BulletBoss2;
 import rbadia.voidspace.model.Floor;
 import rbadia.voidspace.model.MegaMan;
@@ -49,10 +49,10 @@ public class GameLogic {
 	private Asteroid asteroid2;
 	private BigAsteroid bigAsteroid;
 	private List<Bullet> bullets;
-	private List<BulletBoss> bulletsBoss;
+	private List<BulletEnemy> bulletsBoss;
 	private List<BulletBoss2> bulletsBoss2;
 	private List<BigBullet> bigBullets;
-	private List<BulletBoss> enemyBullet;
+	private List<BulletEnemy> enemyBullet;
 
 	private Platform[] numPlatforms;
 	private Floor[] floor;
@@ -73,7 +73,7 @@ public class GameLogic {
 
 		// init some variables
 		bullets = new ArrayList<Bullet>();
-		enemyBullet = new ArrayList<BulletBoss>();
+		enemyBullet = new ArrayList<BulletEnemy>();
 		bulletsBoss2 = new ArrayList<BulletBoss2>();
 		bigBullets = new ArrayList<BigBullet>();
 		
@@ -104,7 +104,7 @@ public class GameLogic {
 
 		// init game variables
 		bullets = new ArrayList<Bullet>();
-		enemyBullet = new ArrayList<BulletBoss>();
+		enemyBullet = new ArrayList<BulletEnemy>();
 		bulletsBoss2 = new ArrayList<BulletBoss2>();
 		bigBullets = new ArrayList<BigBullet>();
 	//	asteroid = new ArrayList<Asteroid>();
@@ -262,7 +262,7 @@ public class GameLogic {
 	public void fireEnemyBullet(){
 		int boom = gameScreen.getBoom();
 		if(!status.isNewEnemy()&& boom>2 && boom<8){
-		BulletBoss bullet=new BulletBoss(enemy);
+		BulletEnemy bullet=new BulletEnemy(enemy);
 		enemyBullet.add(bullet);
 		soundMan.playBulletSound();
 		
@@ -275,7 +275,7 @@ public class GameLogic {
 	 * @return if the bullet should be removed from screen
 	 */
 	public boolean moveBullet(Bullet bullet){
-		if(bullet.getY()+enemy.width - bullet.getSpeed() >= 0){
+		if(bullet.getY()+bullet.width - bullet.getSpeed() >= 0){
 			bullet.translate(bullet.getSpeed(), 0);
 			return false;
 		}
@@ -286,12 +286,12 @@ public class GameLogic {
 
 	/**
 	 * Move a bullet once fired from the boss.
-	 * @param bulletBoss the bullet to move
+	 * @param bulleEnemy the bullet to move
 	 * @return if the bullet should be removed from screen
 	 */
-	public boolean moveBulletBoss(BulletBoss bulletBoss){
-		if(enemy.getY()+enemy.getEnemyHeight()>0){
-			bulletBoss.translate(-bulletBoss.getSpeed(),0);
+	public boolean moveBulletEnemy(BulletEnemy bulleEnemy){
+		if(bulleEnemy.getY()+bulleEnemy.width+bulleEnemy.getSpeed()>=0){
+			bulleEnemy.translate(-bulleEnemy.getSpeed(),0);
 			return false;
 		}
 		else{
@@ -453,7 +453,7 @@ public class GameLogic {
 	 * Returns the list of the boss's bullets.
 	 * @return the list of the boss's bullets
 	 */
-	public List<BulletBoss> getEnemyBullet() {
+	public List<BulletEnemy> getEnemyBullet() {
 		return enemyBullet;
 	}
 

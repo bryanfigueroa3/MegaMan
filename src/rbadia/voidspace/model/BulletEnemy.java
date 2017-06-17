@@ -4,11 +4,11 @@ import java.awt.Rectangle;
 /**
  * Represents a bullet fired by a ship.
  */
-public class BulletBoss extends Rectangle {
+public class BulletEnemy extends Rectangle {
 	private static final long serialVersionUID = 1L;
 	
-	private int bulletBossWidth = 8;
-	private int bulletBossHeight = 8;
+	private int bulletEnemyWidth = 8;
+	private int bulletEnemyHeight = 8;
 	private int speed = 8;
 
 	
@@ -16,10 +16,10 @@ public class BulletBoss extends Rectangle {
 	 * Creates a new bullet above the ship, centered on it
 	 * @param ship
 	 */	
-	public BulletBoss(EnemyShip enemy){
-		this.setLocation(enemy.x + enemy.width - bulletBossWidth/2,
-				enemy.y + enemy.width/2 - bulletBossHeight +2);
-		this.setSize(bulletBossWidth, bulletBossHeight);
+	public BulletEnemy(EnemyShip enemy){
+		this.setLocation(enemy.x + enemy.width - bulletEnemyWidth/2,
+				enemy.y + enemy.width/2 - bulletEnemyHeight +2);
+		this.setSize(bulletEnemyWidth, bulletEnemyHeight);
 	}
 	
 

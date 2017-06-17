@@ -17,7 +17,7 @@ import rbadia.voidspace.model.BigBullet;
 import rbadia.voidspace.model.Boss;
 //import rbadia.voidspace.model.Boss;
 import rbadia.voidspace.model.Bullet;
-import rbadia.voidspace.model.BulletBoss;
+import rbadia.voidspace.model.BulletEnemy;
 import rbadia.voidspace.model.Floor;
 //import rbadia.voidspace.model.BulletBoss;
 //import rbadia.voidspace.model.BulletBoss2;
@@ -40,7 +40,7 @@ public class GraphicsManager {
 	private BufferedImage megaManExplosionImg;
 	private BufferedImage enemyShipImg;
 	private BufferedImage bulletBossImg;
-	private BufferedImage backgroundImg;
+	public BufferedImage backgroundImg;
 	private BufferedImage bossImg;
 	//	private BufferedImage bossImg;
 	//	private BufferedImage bossImg2;
@@ -69,7 +69,7 @@ public class GraphicsManager {
 			this.enemyShipImg = ImageIO.read(getClass().getResourceAsStream("/rbadia/voidspace/graphics/ship.png"));
 			this.bulletBossImg = ImageIO.read(getClass().getResource("/rbadia/voidspace/graphics/bullet.png"));
 			this.bossImg = ImageIO.read(getClass().getResource("/rbadia/voidspace/graphics/fireman.png"));
-			this.backgroundImg = ImageIO.read(getClass().getResource("/rbadia/voidspace/graphics/newBackground.png"));
+			this.backgroundImg = ImageIO.read(getClass().getResource("/rbadia/voidspace/graphics/Background.jpg"));
 			//			this.bigAsteroidImg = ImageIO.read(getClass().getResource("/rbadia/voidspace/graphics/BigAsteroid.png"));
 			//			this.bigAsteroidExplosionImg = ImageIO.read(getClass().getResource("/rbadia/voidspace/graphics/bigAsteroidExplosion.png"));
 
@@ -123,7 +123,7 @@ public class GraphicsManager {
 	public void drawBullet(Bullet bullet, Graphics2D g2d, ImageObserver observer) {
 		g2d.drawImage(bulletImg, bullet.x, bullet.y, observer);
 	}
-	public void drawBulletBoss(BulletBoss bulletB, Graphics2D g2d, ImageObserver observer) {
+	public void drawBulletBoss(BulletEnemy bulletB, Graphics2D g2d, ImageObserver observer) {
 		g2d.drawImage(bulletImg, bulletB.x, bulletB.y, observer);
 	}
 	/**
@@ -173,7 +173,7 @@ public class GraphicsManager {
 		g2d.drawImage(bigAsteroidExplosionImg, bigAsteroidExplosion.x, bigAsteroidExplosion.y, observer);
 	}
 	public void drawBackground(Rectangle background, Graphics2D g2d, ImageObserver observer) {
-		g2d.drawImage(bigAsteroidExplosionImg, background.x, background.y, observer);
+		g2d.drawImage(backgroundImg, background.x, background.y, observer);
 	}
 
 
