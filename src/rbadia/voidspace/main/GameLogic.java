@@ -110,7 +110,7 @@ public class GameLogic {
 	//	asteroid = new ArrayList<Asteroid>();
 		//numPlatforms = new Platform[5];
 
-		status.setShipsLeft(3);
+		status.setShipsLeft(10);
 		status.setLevel(1);
 		status.setGameOver(false);
 		status.setAsteroidsDestroyed(0);
@@ -261,7 +261,7 @@ public class GameLogic {
 	}
 	public void fireEnemyBullet(){
 		int boom = gameScreen.getBoom();
-		if(!status.isNewEnemy()&& boom>2 && boom<8){
+		if(!status.isNewEnemy()&& boom > 8){
 		BulletEnemy bullet=new BulletEnemy(enemy);
 		enemyBullet.add(bullet);
 		soundMan.playBulletSound();

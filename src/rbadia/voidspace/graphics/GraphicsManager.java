@@ -12,6 +12,7 @@ import javax.swing.JOptionPane;
 import rbadia.voidspace.main.GameLogic;
 import rbadia.voidspace.main.GameStatus;
 import rbadia.voidspace.model.Asteroid;
+import rbadia.voidspace.model.BigAsteroid;
 //import rbadia.voidspace.model.BigAsteroid;
 import rbadia.voidspace.model.BigBullet;
 import rbadia.voidspace.model.Boss;
@@ -29,6 +30,7 @@ import rbadia.voidspace.model.Platform;
  * Manages and draws game graphics and images.
  */
 public class GraphicsManager {
+	private BufferedImage menuBackgroundImg;
 	private BufferedImage megaManImg;
 	private BufferedImage megaFallRImg;
 	private BufferedImage megaFireRImg;
@@ -47,7 +49,7 @@ public class GraphicsManager {
 	private BufferedImage fireBulletBoss;
 	//	private BufferedImage bossImg;
 	//	private BufferedImage bossImg2;
-	//	private BufferedImage bigAsteroidImg;
+	private BufferedImage bigAsteroidImg;
 	private BufferedImage bigAsteroidExplosionImg;
 	private GameStatus status;
 	private GameLogic gameLogic;
@@ -57,6 +59,7 @@ public class GraphicsManager {
 	public GraphicsManager(){
 		// load images
 		try {
+			//this.menuBackgroundImg = ImageIO.read(getClass().getResource("/rbadia/voidspace/graphics/menuBackrgound.jpg"));
 			this.megaManImg = ImageIO.read(getClass().getResource("/rbadia/voidspace/graphics/megaMan3.png"));
 			this.megaFallRImg = ImageIO.read(getClass().getResource("/rbadia/voidspace/graphics/megaFallRight.png"));
 			this.megaFireRImg = ImageIO.read(getClass().getResource("/rbadia/voidspace/graphics/megaFireRight.png"));
@@ -69,13 +72,13 @@ public class GraphicsManager {
 			//this.megaManExplosionImg = ImageIO.read(getClass().getResource("/rbadia/voidspace/graphics/megaManExplosion.png"));
 			this.bulletImg = ImageIO.read(getClass().getResource("/rbadia/voidspace/graphics/bullet.png"));
 			this.bigBulletImg = ImageIO.read(getClass().getResource("/rbadia/voidspace/graphics/bigBullet.png"));
-			this.enemyShipImg = ImageIO.read(getClass().getResourceAsStream("/rbadia/voidspace/graphics/ship.png"));
+			this.enemyShipImg = ImageIO.read(getClass().getResourceAsStream("/rbadia/voidspace/graphics/boss2.png"));
 			this.bulletBossImg = ImageIO.read(getClass().getResource("/rbadia/voidspace/graphics/bullet.png"));
-			this.bossImg = ImageIO.read(getClass().getResource("/rbadia/voidspace/graphics/Fireman.jpg"));
+			this.bossImg = ImageIO.read(getClass().getResource("/rbadia/voidspace/graphics/boss1.png"));
 			this.bossFireImg = ImageIO.read(getClass().getResource("/rbadia/voidspace/graphics/firemanShoot.png"));
 			this.fireBulletBoss = ImageIO.read(getClass().getResource("/rbadia/voidspace/graphics/fire.jpg"));
-			//			this.bigAsteroidImg = ImageIO.read(getClass().getResource("/rbadia/voidspace/graphics/BigAsteroid.png"));
-			//			this.bigAsteroidExplosionImg = ImageIO.read(getClass().getResource("/rbadia/voidspace/graphics/bigAsteroidExplosion.png"));
+			this.bigAsteroidImg = ImageIO.read(getClass().getResource("/rbadia/voidspace/graphics/BigAsteroid.png"));
+			this.bigAsteroidExplosionImg = ImageIO.read(getClass().getResource("/rbadia/voidspace/graphics/asteroidExplosion.png"));
 
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, "The graphic files are either corrupt or missing.",
@@ -91,7 +94,7 @@ public class GraphicsManager {
 	 * @param g2d the graphics canvas
 	 * @param observer object to be notified
 	 */
-
+	
 	public void drawMegaMan (MegaMan megaMan, Graphics2D g2d, ImageObserver observer){
 		g2d.drawImage(megaManImg, megaMan.x, megaMan.y, observer);	
 	}
@@ -154,6 +157,9 @@ public class GraphicsManager {
 	public void drawAsteroid(Asteroid asteroid, Graphics2D g2d, ImageObserver observer) {
 		g2d.drawImage(asteroidImg, asteroid.x, asteroid.y, observer);
 	} 
+	public void drawBigAsteroid(BigAsteroid bigAsteroid, Graphics2D g2d, ImageObserver observer) {
+		g2d.drawImage(bigAsteroidImg, bigAsteroid.x, bigAsteroid.y, observer);
+	} 
 
 	/**
 	 * Draws a ship explosion image to the specified graphics canvas.
@@ -171,7 +177,7 @@ public class GraphicsManager {
 	 * @param g2d the graphics canvas
 	 * @param observer object to be notified
 	 */
-	public void drawenemyShip(Rectangle enemyShip, Graphics2D g2d, ImageObserver observer ){
+	public void drawEnemyShip(Rectangle enemyShip, Graphics2D g2d, ImageObserver observer ){
 		g2d.drawImage(enemyShipImg, enemyShip.x,enemyShip.y, observer);
 	}
 	public void drawAsteroidExplosion(Rectangle asteroidExplosion, Graphics2D g2d, ImageObserver observer) {
@@ -181,7 +187,7 @@ public class GraphicsManager {
 	public void drawBigAsteroidExplosion(Rectangle bigAsteroidExplosion, Graphics2D g2d, ImageObserver observer) {
 		g2d.drawImage(bigAsteroidExplosionImg, bigAsteroidExplosion.x, bigAsteroidExplosion.y, observer);
 	}
-
-
-
+	public void drawMenuBackground (Graphics2D g2d, ImageObserver observer){
+		g2d.drawImage(menuBackgroundImg, 0, 0, observer);	
+	}
 }

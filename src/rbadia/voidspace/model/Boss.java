@@ -14,6 +14,8 @@ public class Boss extends Rectangle   {
 	private int bossWidth = 95;
 	private int bossHeight = 100;
 	private int speed = DEFAULT_SPEED;
+	
+
 	private static final int Y_OFFSET = 30;
 	
 
@@ -40,7 +42,10 @@ public class Boss extends Rectangle   {
 	 * @return the current asteroid speed
 	 */
 	public int getSpeed() {
-	
 		return speed = DEFAULT_SPEED;
+	}
+	
+	public void setSpeed(int speed) {
+		this.speed = speed;
 	}
 }

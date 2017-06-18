@@ -44,8 +44,7 @@ public class Asteroid extends Rectangle implements List<Asteroid>  {
 	 * @return the current asteroid speed
 	 */
 	public int getSpeed() {
-		int randspeed = rand.nextInt(7);
-		return speed = randspeed;
+		return speed;
 	}
 	
 	/**

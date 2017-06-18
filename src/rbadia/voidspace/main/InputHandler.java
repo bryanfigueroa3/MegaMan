@@ -102,7 +102,7 @@ public class InputHandler implements KeyListener{
 			}
 			
 			if(nIsPressed){
-				if(!status.isGameOver() && !status.isNewMegaMan() && !status.isGameStarting() && !status.isGameWon()){
+				if(!status.isGameOver() && !status.isNewMegaMan() && !status.isGameStarting() && !status.isGameWon() && status.isGameStarted()){
 					status.setLevel(status.getLevel()+1);
 					switch(status.getLevel()){
 					case 1:

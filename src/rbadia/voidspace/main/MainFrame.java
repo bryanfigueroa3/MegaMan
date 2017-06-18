@@ -45,7 +45,7 @@ public class MainFrame extends JFrame {
 	private void initialize() {
 		this.setSize(530, 480);
 		this.setContentPane(getJContentPane());
-		this.setTitle("Void Space");
+		this.setTitle("Definitely Not MegaMan");
 //		this.setResizable(false);
 		
 		Dimension dim = this.getToolkit().getScreenSize();
@@ -111,11 +111,11 @@ public class MainFrame extends JFrame {
 			gridBagConstraints.fill = GridBagConstraints.NONE;
 			gridBagConstraints.gridwidth = 6;	
 			shipsLabel = new JLabel("Lives Left: ");
-			shipsValueLabel = new JLabel("3");
+			shipsValueLabel = new JLabel("10");
 			destroyedLabel = new JLabel("Score: ");
 			destroyedValueLabel = new JLabel("0");
 			levelLabel = new JLabel("Level: ");
-			levelValueLabel = new JLabel("1");
+			levelValueLabel = new JLabel("0");
 			jContentPane = new JPanel();
 			jContentPane.setLayout(new GridBagLayout());
 			jContentPane.add(getGameScreen(), gridBagConstraints);
